@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { FileText, PieChart, Plus, MoreHorizontal } from 'lucide-react';
+import { FileText, PieChart, Plus, MoreHorizontal, Sparkles } from 'lucide-react';
 import { ViewState } from '../types';
 
 interface BottomNavProps {
@@ -12,11 +13,12 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView 
     { id: 'TRANS', icon: FileText, label: 'Trans.' },
     { id: 'STATS', icon: PieChart, label: 'Stats' },
     { id: 'ADD_OVERLAY', icon: Plus, label: '', isFab: true }, // Special FAB item
+    { id: 'AI_CHAT', icon: Sparkles, label: 'Advisor' },
     { id: 'MORE', icon: MoreHorizontal, label: 'More' },
   ];
 
   return (
-    <div className="bg-[#1A1A1A] border-t border-gray-800 pb-safe pt-2 px-2 z-40">
+    <div className="md:hidden bg-white dark:bg-[#1A1A1A] border-t border-gray-200 dark:border-gray-800 pb-safe pt-2 px-2 z-40 w-full">
       <div className="flex justify-around items-end h-14 pb-2">
         {navItems.map((item) => {
           if (item.isFab) {
@@ -26,7 +28,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView 
                 onClick={() => onChangeView(item.id as ViewState)}
                 className="relative -top-6 group"
               >
-                <div className="bg-[#FF5252] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-red-900/20 transform transition-transform duration-200 group-active:scale-95">
+                <div className="bg-[#FF5252] text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg shadow-red-500/30 dark:shadow-red-900/20 transform transition-transform duration-200 group-active:scale-95">
                   <Plus size={28} strokeWidth={2.5} />
                 </div>
               </button>
@@ -35,7 +37,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView 
 
           const Icon = item.icon;
           const isActive = currentView === item.id;
-          const colorClass = isActive ? 'text-[#FF5252]' : 'text-gray-500';
+          const colorClass = isActive ? 'text-[#FF5252]' : 'text-gray-400 dark:text-gray-500';
           
           return (
             <button

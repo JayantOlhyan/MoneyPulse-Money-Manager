@@ -52,15 +52,15 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
   const selectedCategory = categories.find(c => c.id === categoryId);
 
   return (
-    <div className="h-full flex flex-col bg-[#1E1E1E] text-white">
+    <div className="h-full flex flex-col bg-gray-50 dark:bg-[#1E1E1E] text-gray-900 dark:text-white">
       {/* Header Tabs */}
-      <div className="flex bg-[#121212] pt-2">
+      <div className="flex bg-white dark:bg-[#121212] pt-2 border-b border-gray-200 dark:border-gray-800">
         {[TransactionType.EXPENSE, TransactionType.INCOME, TransactionType.TRANSFER].map((t) => (
           <button
             key={t}
             onClick={() => setType(t)}
             className={`flex-1 pb-3 pt-2 text-sm font-medium uppercase tracking-wide transition-colors relative ${
-              type === t ? 'text-[#FF5252]' : 'text-gray-500'
+              type === t ? 'text-[#FF5252]' : 'text-gray-400 dark:text-gray-500'
             }`}
           >
             {t === TransactionType.EXPENSE ? 'Expense' : t === TransactionType.INCOME ? 'Income' : 'Transfer'}
@@ -70,14 +70,14 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
       </div>
 
       {/* Main Inputs Display */}
-      <div className="p-4 flex flex-col gap-4 border-b border-gray-800">
+      <div className="p-4 flex flex-col gap-4 border-b border-gray-200 dark:border-gray-800">
         {/* Top Row: Date | Account */}
-        <div className="flex justify-between items-center text-xs text-gray-400">
-          <div className="flex items-center gap-2 bg-[#2C2C2C] px-3 py-1.5 rounded-full">
+        <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-2 bg-gray-200 dark:bg-[#2C2C2C] px-3 py-1.5 rounded-full">
             <Calendar size={14} />
             <span>{date}</span>
           </div>
-          <div className="flex items-center gap-2 bg-[#2C2C2C] px-3 py-1.5 rounded-full">
+          <div className="flex items-center gap-2 bg-gray-200 dark:bg-[#2C2C2C] px-3 py-1.5 rounded-full">
              <span>{accounts.find(a => a.id === accountId)?.name}</span>
           </div>
         </div>
@@ -87,7 +87,7 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
           <span className="text-2xl text-[#FF5252] font-bold">
             {type === TransactionType.EXPENSE ? '-' : type === TransactionType.INCOME ? '+' : ''}
           </span>
-          <span className="text-5xl font-light tracking-tight">{amountStr}</span>
+          <span className="text-5xl font-light tracking-tight text-gray-900 dark:text-white">{amountStr}</span>
         </div>
 
         {/* Category & Note Preview */}
@@ -99,13 +99,13 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
                   return <Icon size={20} />;
                 })()}
              </div>
-             <span className="font-medium text-lg">{selectedCategory?.name}</span>
+             <span className="font-medium text-lg text-gray-800 dark:text-white">{selectedCategory?.name}</span>
           </div>
           <div className="text-right flex-1 ml-4">
             {note ? (
-              <span className="text-gray-300 text-sm">{note}</span>
+              <span className="text-gray-600 dark:text-gray-300 text-sm">{note}</span>
             ) : (
-              <span className="text-gray-600 text-sm italic">Add a note...</span>
+              <span className="text-gray-400 dark:text-gray-600 text-sm italic">Add a note...</span>
             )}
           </div>
         </div>
@@ -115,7 +115,7 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
       <div className="flex-1 flex overflow-hidden">
         
         {/* Left: Category Grid (Scrollable) */}
-        <div className="flex-1 p-2 overflow-y-auto border-r border-gray-800">
+        <div className="flex-1 p-2 overflow-y-auto border-r border-gray-200 dark:border-gray-800">
           <div className="grid grid-cols-3 gap-2">
             {filteredCategories.map(cat => {
               const Icon = (LucideIcons as any)[cat.icon];
@@ -124,7 +124,7 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
                 <button
                   key={cat.id}
                   onClick={() => setCategoryId(cat.id)}
-                  className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${isSelected ? 'bg-[#2C2C2C]' : 'hover:bg-[#2C2C2C]/50'}`}
+                  className={`flex flex-col items-center gap-1 p-2 rounded-lg transition-all ${isSelected ? 'bg-gray-200 dark:bg-[#2C2C2C]' : 'hover:bg-gray-100 dark:hover:bg-[#2C2C2C]/50'}`}
                 >
                   <div 
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-transform ${isSelected ? 'scale-110' : 'scale-100'} ${!isSelected && 'grayscale opacity-70'}`}
@@ -132,7 +132,7 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
                   >
                     <Icon size={20} className="text-white" />
                   </div>
-                  <span className={`text-[10px] truncate w-full text-center ${isSelected ? 'text-white font-medium' : 'text-gray-500'}`}>
+                  <span className={`text-[10px] truncate w-full text-center ${isSelected ? 'text-gray-900 dark:text-white font-medium' : 'text-gray-500'}`}>
                     {cat.name}
                   </span>
                 </button>
@@ -142,27 +142,27 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
           
           {/* Note Input Inline */}
           <div className="mt-4 px-2">
-             <div className="bg-[#2C2C2C] rounded-lg flex items-center p-2">
+             <div className="bg-gray-200 dark:bg-[#2C2C2C] rounded-lg flex items-center p-2">
                 <Edit2 size={16} className="text-gray-500 mr-2" />
                 <input 
                    type="text" 
                    value={note}
                    onChange={(e) => setNote(e.target.value)}
                    placeholder="Write a note"
-                   className="bg-transparent text-sm text-white w-full focus:outline-none placeholder-gray-600"
+                   className="bg-transparent text-sm text-gray-900 dark:text-white w-full focus:outline-none placeholder-gray-500 dark:placeholder-gray-600"
                 />
              </div>
           </div>
         </div>
 
         {/* Right: Numeric Keypad */}
-        <div className="w-[40%] bg-[#161616] flex flex-col">
+        <div className="w-[40%] bg-white dark:bg-[#161616] flex flex-col">
           <div className="grid grid-cols-3 flex-1">
             {['7','8','9','4','5','6','1','2','3','.','0','DEL'].map((key) => (
               <button
                 key={key}
                 onClick={() => key === 'DEL' ? handleBackspace() : handleNumPress(key)}
-                className="flex items-center justify-center text-xl font-medium text-gray-200 active:bg-gray-800 transition-colors"
+                className="flex items-center justify-center text-xl font-medium text-gray-800 dark:text-gray-200 active:bg-gray-100 dark:active:bg-gray-800 transition-colors"
               >
                 {key === 'DEL' ? '⌫' : key}
               </button>
@@ -170,8 +170,8 @@ export const AddTransaction: React.FC<AddTransactionProps> = ({ accounts, catego
           </div>
           
           {/* Action Buttons */}
-          <div className="grid grid-cols-2 h-16 border-t border-gray-800">
-            <button onClick={onCancel} className="text-gray-400 font-medium hover:bg-gray-800 active:bg-gray-700 transition-colors">
+          <div className="grid grid-cols-2 h-16 border-t border-gray-200 dark:border-gray-800">
+            <button onClick={onCancel} className="text-gray-500 dark:text-gray-400 font-medium hover:bg-gray-100 dark:hover:bg-gray-800 active:bg-gray-200 dark:active:bg-gray-700 transition-colors">
               Cancel
             </button>
             <button onClick={handleSave} className="bg-[#FF5252] text-white font-bold hover:bg-red-600 active:bg-red-700 transition-colors flex items-center justify-center gap-1">

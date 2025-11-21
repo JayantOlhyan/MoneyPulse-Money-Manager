@@ -1,72 +1,53 @@
-import { Account, AccountType, Category, TransactionType } from './types';
+import { Account, AccountType, Category, TransactionType, UserProfile, Currency, WeekStart } from './types';
+
+export const CURRENCIES: Currency[] = [
+  { code: 'USD', symbol: '$', name: 'United States Dollar' },
+  { code: 'EUR', symbol: '€', name: 'Euro' },
+  { code: 'GBP', symbol: '£', name: 'British Pound' },
+  { code: 'JPY', symbol: '¥', name: 'Japanese Yen' },
+  { code: 'KRW', symbol: '₩', name: 'South Korean Won' },
+  { code: 'CNY', symbol: '¥', name: 'Chinese Yuan' },
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee' },
+];
+
+export const WEEK_START_OPTIONS: WeekStart[] = ['Sunday', 'Monday', 'Saturday'];
 
 export const INITIAL_ACCOUNTS: Account[] = [
   { id: '1', name: 'Cash', type: AccountType.CASH, balance: 150.00, currency: 'USD' },
   { id: '2', name: 'Chase Bank', type: AccountType.BANK, balance: 2450.50, currency: 'USD' },
-  { id: '3', name: 'Aptos Hot Wallet', type: AccountType.APTOS_WALLET, balance: 125.00, currency: 'USDC', address: '0x123...abc' },
+  { id: '3', name: 'Aptos Wallet', type: AccountType.APTOS_WALLET, balance: 125.00, currency: 'USDC', address: '0x123...abc' }
 ];
 
-// Updated to match the "Charcoal & Red" aesthetic. 
-// Using generic string names for icons which will be mapped in components
 export const INITIAL_CATEGORIES: Category[] = [
   { id: '1', name: 'Food', icon: 'Utensils', color: '#FF5252', type: TransactionType.EXPENSE },
-  { id: '2', name: 'Transport', icon: 'Bus', color: '#FF9800', type: TransactionType.EXPENSE },
-  { id: '3', name: 'Shopping', icon: 'ShoppingBag', color: '#2196F3', type: TransactionType.EXPENSE },
-  { id: '4', name: 'Salary', icon: 'Briefcase', color: '#4CAF50', type: TransactionType.INCOME },
-  { id: '5', name: 'Crypto', icon: 'Bitcoin', color: '#9C27B0', type: TransactionType.INCOME },
-  { id: '6', name: 'Entertainment', icon: 'Film', color: '#E91E63', type: TransactionType.EXPENSE },
-  { id: '7', name: 'Health', icon: 'Heart', color: '#F44336', type: TransactionType.EXPENSE },
-  { id: '8', name: 'Education', icon: 'Book', color: '#3F51B5', type: TransactionType.EXPENSE },
-  { id: '9', name: 'Bills', icon: 'FileText', color: '#607D8B', type: TransactionType.EXPENSE },
+  { id: '2', name: 'Transport', icon: 'Bus', color: '#448AFF', type: TransactionType.EXPENSE },
+  { id: '3', name: 'Shopping', icon: 'ShoppingBag', color: '#7C4DFF', type: TransactionType.EXPENSE },
+  { id: '4', name: 'Entertainment', icon: 'Film', color: '#FFAB40', type: TransactionType.EXPENSE },
+  { id: '5', name: 'Bills', icon: 'Receipt', color: '#607D8B', type: TransactionType.EXPENSE },
+  { id: '6', name: 'Salary', icon: 'Briefcase', color: '#4CAF50', type: TransactionType.INCOME },
+  { id: '7', name: 'Investment', icon: 'TrendingUp', color: '#00BCD4', type: TransactionType.INCOME },
 ];
 
+export const INITIAL_USER_PROFILE: UserProfile = {
+  name: 'Alex Doe',
+  id: '8839201',
+  isPremium: true,
+  avatar: '' // Empty default
+};
+
 export const MOCK_HISTORY = [
-  {
-    id: '101',
-    amount: 15.50,
-    date: new Date().toISOString(),
-    note: 'Lunch at Chipotle',
-    categoryId: '1',
-    accountId: '1',
-    type: TransactionType.EXPENSE
-  },
-  {
-    id: '103',
-    amount: 45.00,
-    date: new Date().toISOString(),
-    note: 'Gas',
-    categoryId: '2',
-    accountId: '2',
-    type: TransactionType.EXPENSE
-  },
-  {
-    id: '102',
-    amount: 1200,
-    date: new Date(Date.now() - 86400000 * 2).toISOString(),
-    note: 'Monthly Salary',
-    categoryId: '4',
-    accountId: '2',
-    type: TransactionType.INCOME
-  },
-  {
-    id: '104',
-    amount: 89.99,
-    date: new Date(Date.now() - 86400000 * 5).toISOString(),
-    note: 'New Shoes',
-    categoryId: '3',
-    accountId: '2',
-    type: TransactionType.EXPENSE
-  }
+  { id: '101', amount: 45.50, date: new Date().toISOString(), note: 'Grocery run', categoryId: '1', accountId: '2', type: TransactionType.EXPENSE },
+  { id: '102', amount: 12.00, date: new Date().toISOString(), note: 'Uber to work', categoryId: '2', accountId: '2', type: TransactionType.EXPENSE },
+  { id: '103', amount: 2500.00, date: new Date(Date.now() - 86400000 * 2).toISOString(), note: 'Monthly Salary', categoryId: '6', accountId: '2', type: TransactionType.INCOME },
 ];
 
 export const AVAILABLE_ICONS = [
-  'Utensils', 'Bus', 'ShoppingBag', 'Briefcase', 'Bitcoin', 'Film', 'Heart', 'Book', 'FileText',
-  'Coffee', 'Car', 'Home', 'Smartphone', 'Wifi', 'Gift', 'Music', 'Gamepad', 'Plane',
-  'Dumbbell', 'Stethoscope', 'GraduationCap', 'Baby', 'Dog', 'Cat', 'Hammer', 'Zap'
+  'Utensils', 'Bus', 'ShoppingBag', 'Film', 'Receipt', 'Briefcase', 'TrendingUp',
+  'Home', 'Smartphone', 'Wifi', 'Gift', 'Coffee', 'Music', 'Book', 'Heart', 'Smile',
+  'Zap', 'Anchor', 'Award', 'Briefcase', 'Camera', 'Cloud', 'Droplet', 'Eye'
 ];
 
 export const AVAILABLE_COLORS = [
-  '#FF5252', '#FF9800', '#2196F3', '#4CAF50', '#9C27B0', '#E91E63', 
-  '#F44336', '#3F51B5', '#607D8B', '#009688', '#FFC107', '#795548', 
-  '#9E9E9E', '#673AB7', '#333333', '#FFFFFF'
+  '#FF5252', '#448AFF', '#7C4DFF', '#FFAB40', '#607D8B', '#4CAF50', '#00BCD4',
+  '#E91E63', '#9C27B0', '#3F51B5', '#009688', '#8BC34A', '#FFEB3B', '#FF9800', '#795548'
 ];

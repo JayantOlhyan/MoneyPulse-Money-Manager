@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Send, Sparkles, Bot, User, RefreshCw } from 'lucide-react';
 import { GoogleGenAI, Chat, GenerateContentResponse } from "@google/genai";
@@ -130,79 +131,81 @@ export const AIChat: React.FC<AIChatProps> = ({ accounts, transactions, categori
   };
 
   return (
-    <div className="flex flex-col h-full bg-[#121212] text-white pb-24">
+    <div className="flex flex-col h-full bg-gray-50 dark:bg-[#121212] text-gray-900 dark:text-white pb-24 md:pb-0">
       {/* Header */}
-      <div className="flex items-center gap-3 p-4 bg-[#1A1A1A] border-b border-gray-800 shadow-md sticky top-0 z-10">
-        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center shadow-lg">
+      <div className="flex items-center gap-3 p-4 bg-white dark:bg-[#1A1A1A] border-b border-gray-200 dark:border-gray-800 shadow-sm sticky top-0 z-10">
+        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
             <Sparkles size={20} className="text-white" />
         </div>
         <div>
-            <h2 className="text-lg font-semibold">Financial Assistant</h2>
-            <p className="text-xs text-gray-400 flex items-center gap-1">
-                Powered by Gemini 3 Pro <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+            <h2 className="text-lg font-semibold text-gray-900 dark:text-white">Financial Advisor</h2>
+            <p className="text-xs text-gray-500 dark:text-gray-400 flex items-center gap-1">
+                Powered by Gemini <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
             </p>
         </div>
       </div>
 
       {/* Chat Area */}
       <div className="flex-1 overflow-y-auto p-4 space-y-6 scrollbar-hide">
-        {messages.map((msg) => (
-            <div 
-                key={msg.id} 
-                className={`flex w-full ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
-            >
-                <div className={`flex max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} gap-3`}>
-                    {/* Avatar */}
-                    <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center ${
-                        msg.role === 'user' ? 'bg-[#FF5252]' : 'bg-[#2C2C2C]'
-                    }`}>
-                        {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
-                    </div>
+        <div className="max-w-3xl mx-auto space-y-6">
+            {messages.map((msg) => (
+                <div 
+                    key={msg.id} 
+                    className={`flex w-full ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                >
+                    <div className={`flex max-w-[85%] ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'} gap-3`}>
+                        {/* Avatar */}
+                        <div className={`w-8 h-8 rounded-full flex-shrink-0 flex items-center justify-center shadow-sm ${
+                            msg.role === 'user' ? 'bg-[#FF5252]' : 'bg-white dark:bg-[#2C2C2C] border border-gray-200 dark:border-gray-700'
+                        }`}>
+                            {msg.role === 'user' ? <User size={16} className="text-white" /> : <Bot size={16} className="text-blue-600 dark:text-blue-400" />}
+                        </div>
 
-                    {/* Bubble */}
-                    <div className={`p-3.5 rounded-2xl text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${
-                        msg.role === 'user' 
-                            ? 'bg-[#FF5252] text-white rounded-tr-none' 
-                            : 'bg-[#2C2C2C] text-gray-100 rounded-tl-none border border-gray-800'
-                    }`}>
-                        {msg.text}
+                        {/* Bubble */}
+                        <div className={`p-3.5 rounded-2xl text-sm leading-relaxed shadow-sm whitespace-pre-wrap ${
+                            msg.role === 'user' 
+                                ? 'bg-[#FF5252] text-white rounded-tr-none' 
+                                : 'bg-white dark:bg-[#2C2C2C] text-gray-800 dark:text-gray-100 rounded-tl-none border border-gray-100 dark:border-gray-800'
+                        }`}>
+                            {msg.text}
+                        </div>
                     </div>
                 </div>
-            </div>
-        ))}
-        
-        {isLoading && (
-            <div className="flex justify-start w-full">
-                <div className="flex max-w-[85%] gap-3">
-                    <div className="w-8 h-8 rounded-full bg-[#2C2C2C] flex items-center justify-center">
-                        <RefreshCw size={16} className="animate-spin text-gray-400" />
-                    </div>
-                    <div className="bg-[#2C2C2C] px-4 py-3 rounded-2xl rounded-tl-none border border-gray-800 flex items-center gap-1">
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
-                        <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            ))}
+            
+            {isLoading && (
+                <div className="flex justify-start w-full">
+                    <div className="flex max-w-[85%] gap-3">
+                        <div className="w-8 h-8 rounded-full bg-white dark:bg-[#2C2C2C] border border-gray-200 dark:border-gray-700 flex items-center justify-center shadow-sm">
+                            <RefreshCw size={16} className="animate-spin text-blue-500" />
+                        </div>
+                        <div className="bg-white dark:bg-[#2C2C2C] px-4 py-3 rounded-2xl rounded-tl-none border border-gray-100 dark:border-gray-800 flex items-center gap-1 shadow-sm">
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                            <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        )}
-        <div ref={messagesEndRef} />
+            )}
+            <div ref={messagesEndRef} />
+        </div>
       </div>
 
       {/* Input Area */}
-      <div className="p-3 bg-[#1A1A1A] border-t border-gray-800">
-        <div className="relative flex items-end gap-2 bg-[#2C2C2C] rounded-xl p-2 border border-gray-700 focus-within:border-[#FF5252] transition-colors">
+      <div className="p-3 bg-white dark:bg-[#1A1A1A] border-t border-gray-200 dark:border-gray-800">
+        <div className="max-w-3xl mx-auto relative flex items-end gap-2 bg-gray-100 dark:bg-[#2C2C2C] rounded-xl p-2 border border-transparent focus-within:border-[#FF5252] focus-within:bg-white dark:focus-within:bg-[#252525] transition-all">
             <textarea
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
-                placeholder="Ask about your spending..."
-                className="flex-1 bg-transparent text-white text-sm placeholder-gray-500 resize-none max-h-32 p-2 focus:outline-none scrollbar-hide"
+                placeholder="Ask for advice or analysis..."
+                className="flex-1 bg-transparent text-gray-900 dark:text-white text-sm placeholder-gray-500 dark:placeholder-gray-500 resize-none max-h-32 p-2 focus:outline-none scrollbar-hide"
                 rows={1}
             />
             <button 
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="p-2 rounded-lg bg-[#FF5252] text-white hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all mb-0.5"
+                className="p-2 rounded-lg bg-[#FF5252] text-white hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed transition-all mb-0.5 shadow-sm"
             >
                 <Send size={18} />
             </button>

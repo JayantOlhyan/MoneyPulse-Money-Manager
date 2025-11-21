@@ -1,3 +1,4 @@
+
 export enum TransactionType {
   INCOME = 'INCOME',
   EXPENSE = 'EXPENSE',
@@ -46,7 +47,22 @@ export interface Budget {
   limit: number;
 }
 
-export type ViewState = 'TRANS' | 'STATS' | 'ACCOUNTS' | 'MORE' | 'SMOOTH_SEND' | 'ADD_OVERLAY' | 'CATEGORY_SETTINGS';
+export interface UserProfile {
+  name: string;
+  id: string;
+  avatar?: string; // Base64 data URL
+  isPremium: boolean;
+}
+
+export interface Currency {
+  code: string;
+  symbol: string;
+  name: string;
+}
+
+export type WeekStart = 'Sunday' | 'Monday' | 'Saturday';
+
+export type ViewState = 'TRANS' | 'STATS' | 'ACCOUNTS' | 'MORE' | 'SMOOTH_SEND' | 'ADD_OVERLAY' | 'CATEGORY_SETTINGS' | 'AI_CHAT';
 
 // Mock SmoothSend SDK response
 export interface SmoothSendResult {
