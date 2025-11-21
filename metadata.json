@@ -1,0 +1,5 @@
+{
+  "name": "MoneyPulse Money Manager",
+  "description": "A comprehensive expense tracker and budgeting app featuring gasless stablecoin transfers via Aptos SmoothSend integration.",
+  "requestFramePermissions": []
+}
