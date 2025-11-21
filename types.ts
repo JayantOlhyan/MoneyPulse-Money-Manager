@@ -46,7 +46,7 @@ export interface Budget {
   limit: number;
 }
 
-export type ViewState = 'TRANS' | 'STATS' | 'ACCOUNTS' | 'MORE' | 'SMOOTH_SEND' | 'ADD_OVERLAY' | 'AI_CHAT' | 'CATEGORY_SETTINGS';
+export type ViewState = 'TRANS' | 'STATS' | 'ACCOUNTS' | 'MORE' | 'SMOOTH_SEND' | 'ADD_OVERLAY' | 'CATEGORY_SETTINGS';
 
 // Mock SmoothSend SDK response
 export interface SmoothSendResult {

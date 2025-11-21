@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, PieChart, Plus, MoreHorizontal, Sparkles } from 'lucide-react';
+import { FileText, PieChart, Plus, MoreHorizontal } from 'lucide-react';
 import { ViewState } from '../types';
 
 interface BottomNavProps {
@@ -12,7 +12,6 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentView, onChangeView 
     { id: 'TRANS', icon: FileText, label: 'Trans.' },
     { id: 'STATS', icon: PieChart, label: 'Stats' },
     { id: 'ADD_OVERLAY', icon: Plus, label: '', isFab: true }, // Special FAB item
-    { id: 'AI_CHAT', icon: Sparkles, label: 'AI Chat' },
     { id: 'MORE', icon: MoreHorizontal, label: 'More' },
   ];
 

@@ -8,7 +8,6 @@ import { Stats } from './views/Stats';
 import { SmoothSend } from './views/SmoothSend';
 import { Settings } from './views/Settings'; // This is now the "More" view
 import { Accounts } from './views/Accounts';
-import { AIChat } from './views/AIChat';
 import { CategorySettings } from './views/CategorySettings';
 
 const App: React.FC = () => {
@@ -107,8 +106,6 @@ const App: React.FC = () => {
         return <Stats transactions={transactions} categories={categories} />;
       case 'ACCOUNTS':
         return <Accounts accounts={accounts} />;
-      case 'AI_CHAT':
-        return <AIChat accounts={accounts} transactions={transactions} categories={categories} />;
       case 'SMOOTH_SEND':
         const aptosAcc = accounts.find(a => a.type === AccountType.APTOS_WALLET);
         if (!aptosAcc) return <div>No Aptos Wallet Found</div>;
